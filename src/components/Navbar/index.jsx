@@ -1,22 +1,14 @@
 import { FaOpencart } from "@react-icons/all-files/fa/FaOpencart";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const cartCounter = useSelector((state) => state.counteritem.counteritem);
-  // const cartCounter = useSelector((state) => state.counteritem);
-  // const statee = useSelector((state) => state.counteritem.quantity);
-// console.log(statee);
+const Navbar = ({count}) => {
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-bg-gradient bg-light shadow">
         <div className="container-fluid px-5">
-          <Link
-            className="navbar-brand fw-bold text-danger fs-3 fst-italic"
-            to="/"
-          >
+          <a className="navbar-brand fw-bold text-danger fs-3 fst-italic" href="/">
             DS <span className="fs-6 ">shop</span>
-          </Link>
+          </a>
 
           <button
             className="navbar-toggler"
@@ -29,31 +21,26 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className="collapse navbar-collapse "
-            id="navbarSupportedContent"
-          >
+          <div className="collapse navbar-collapse " id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link text-danger fs-3" to="/Cart">
-                  {cartCounter}
-                  <FaOpencart />
-                </Link>
+                <a className="nav-link text-danger fs-3" href="/Cart">{count}
+<FaOpencart/></a>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <Link className="nav-link" to="/counter">
+                <a className="nav-link" href="/counter">
                   Counter
-                </Link>
+                </a>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <Link className="nav-link" to="/login">
+                <a className="nav-link" href="/login">
                   Signin
-                </Link>
+                </a>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <Link className="nav-link" to="/register">
+                <a className="nav-link" href="/register">
                   Signup
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

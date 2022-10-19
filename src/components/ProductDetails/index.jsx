@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AddToCart } from "../../redux/cartSlice";
 
 const ProductDetails = ({setCount}) => {
   const params = useParams();
@@ -14,13 +12,6 @@ const ProductDetails = ({setCount}) => {
       .then((json) => setProducts(json));
   };
   const [product, setProducts] = useState({});
-
-  const dispatch = useDispatch();
-
-  let addToCart = (product) => {
-    dispatch(AddToCart(product));
-
-  }
 
   return (
     <>
@@ -38,12 +29,9 @@ const ProductDetails = ({setCount}) => {
             <h6 className="fs-4 text-warning">
               {product?.rating?.count} Pieces Left{" "}
             </h6>
-             <button
-                    className="btn btn-danger my-2 text-white"
-                    onClick={()=>addToCart(product)}
-                  >
-                    ADD TO CART
-                  </button>
+            <button className="btn btn-danger my-2" onClick={setCount}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
