@@ -177,7 +177,7 @@ const Register = () => {
             />
 
             {errors?.checkbox?.type === "required" && (
-              <p className="text-danger">You have to confirm password</p>
+              <p className="text-danger">You have to ckeck</p>
             )}
           </Form.Group>
 
