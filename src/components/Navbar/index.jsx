@@ -1,53 +1,60 @@
 import { FaOpencart } from "@react-icons/all-files/fa/FaOpencart";
+import { Container, Navbar} from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Navbar = ({count}) => {
-
+const NavComponent = () => {
+  const cartCounter = useSelector((state) => state.counteritem.cartitems);
+  // const cartCounter = useSelector((state) => state.counteritem);
+  // const statee = useSelector((state) => state.counteritem.quantity);
+console.log(cartCounter);
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-bg-gradient bg-light shadow">
-        <div className="container-fluid px-5">
-          <a className="navbar-brand fw-bold text-danger fs-3 fst-italic" href="/">
-            DS <span className="fs-6 ">shop</span>
-          </a>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+      <Navbar expand="lg" className="navbar bg-bg-gradient bg-light shadow">
+        <Container className="container-fluid px-5">
+          <Link
+            className="navbar-brand fw-bold text-danger fs-3 fst-italic"
+            to="/"
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse " id="navbarSupportedContent">
+            DS <span className="fs-6 ">shop</span>
+          </Link>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+
+         
+          <Navbar.Collapse
+            className="collapse navbar-collapse "
+            id="basic-navbar-nav"
+          >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link text-danger fs-3" href="/Cart">{count}
-<FaOpencart/></a>
+                <Link className="nav-link text-danger fs-3" to="/Cart">
+                  {cartCounter.length}
+                  <FaOpencart />
+                </Link>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <a className="nav-link" href="/counter">
+                <Link className="nav-link" to="/counter">
                   Counter
-                </a>
+                </Link>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <a className="nav-link" href="/login">
-                  Signin
-                </a>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
               </li>
               <li className="nav-item mt-2 fw-bold">
-                <a className="nav-link" href="/register">
-                  Signup
-                </a>
+                <Link className="nav-link" to="/register">
+                  Register
+                </Link>
               </li>
             </ul>
-          </div>
-        </div>
-      </nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 };
 
-export default Navbar;
+export default NavComponent;

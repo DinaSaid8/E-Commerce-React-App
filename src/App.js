@@ -2,13 +2,15 @@
 import './App.css';
 import CounterContainer from './components/CounterContainer/CounterContainer';
 import {BrowserRouter,Routes, Route} from 'react-router-dom'
-import Navbar from './components/Navbar';
+import NavComponent from './components/Navbar';
 import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart/Cart';
 import { useState } from 'react';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import NotFound from './components/NotFound';
+import WelcomePage from './components/WelcomePage';
 
 function App() {
 
@@ -20,15 +22,16 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <Navbar count={count}/>
+      <NavComponent count={count}/>
       <Routes>
-        <Route path='/counter' element={<CounterContainer/>} />
-        <Route path='/' element={<ProductList setCount={incrementCount} />} />
+        <Route path='/counter' element={<CounterContainer />} />
+        <Route path='/' element= {<WelcomePage/>}/>
+        <Route path='/products' element={<ProductList setCount={incrementCount} />} />
         <Route path='/details/:id' element={<ProductDetails setCount={incrementCount} />} />
         <Route path='/Cart' element={<Cart count={count} />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register/>}/>
-
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     
       </BrowserRouter>

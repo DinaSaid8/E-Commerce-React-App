@@ -1,45 +1,117 @@
+import { useDispatch, useSelector } from "react-redux";
+import Table from "react-bootstrap/Table";
+import empty from "./undraw_empty_cart_co35.png"
+import {
+  decrementCart,
+  deleteItem,
+  incrementCart,
+} from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const [products, setProducts] = useState([]);
-  useEffect(() => {
-    getProduct();
-  }, []);
+  const cartList = useSelector((state) => state.counteritem.cartitems);
+  console.log(cartList);
+  const [total, setTotal] = useState(0);
 
-  const getProduct = () => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
+  useEffect(() => {
+    let total = 0;
+    cartList.forEach((item) => {
+      total += item.price * item.quantity;
+    });
+    setTotal(total);
+  }, [cartList, cartList.quantity]);
+
+  const dispatch = useDispatch();
+
+  let incrementQuantity = (item) => {
+    dispatch(incrementCart(item));
   };
-  console.log(products);
+
+  let decrementQuantity = (item) => {
+    dispatch(decrementCart(item));
+  };
+
+  let removeFromcart = (item) => {
+    dispatch(deleteItem(item));
+  };
 
   return (
     <>
-      <h1 className="text-center text-black-50 m-4">My Products</h1>
-      <div className="container ms-5">
-        <div className="row gy-5">
-          {products.map((product) => {
+      
+      {!!cartList.length && (
+        
+        <div className="container mt-5">
+<h3 className="text-uppercase text-black-50 my-4 fs-2 fw-bold text-center">
+        Cart Info
+      </h3>
+          <Table striped bordered hover className=" text-center shadow  ">
+            <thead>
+              <tr>
+                <th className="w-25">Image</th>
+                <th className="w-25">Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Remove Item</th>
+              </tr>
+            </thead>
+            {cartList.map((item) => {
               return (
-              <div className="col-md-3 d-flex  shadow p-3 offset-1 rounded-4   ">
-                <div>
-                  <div className="w-50 d-flex justify-content-between  ">
-                    <img src={product.image} alt="" className="w-100 mb-4" />
-                  </div>
-                  <h4 
-                    className="text-dark fs-6 text-decoration-none">{product.title}
-                  </h4>
-                  <h5 className="fs-4 text-danger">{product.price} EGP</h5>
-                </div>
-                <h6 className="text-warning">{product.rating.rate}⭐</h6>
-              </div>
-            );
-          })}
+                <>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src={item.image} alt="" className="w-25 mb-4" />
+                      </td>
+                      <td>{item.title}</td>
+                      <td>
+                        <button
+                          className="btn btn-danger text-white me-2 "
+                          onClick={() => incrementQuantity(item)}
+                        >
+                          +
+                        </button>
+                        {item.quantity}
+                        <button
+                          className="btn btn-success text-white ms-2 "
+                          onClick={() => decrementQuantity(item)}
+                        >
+                          -
+                        </button>
+                      </td>
+                      <td>{item.price * item.quantity} EGP</td>
+                      <td>
+                        <button
+                          className="btn btn-danger my-2 text-white"
+                          onClick={() => removeFromcart(item)}
+                        >
+                          Remove Item
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </>
+              );
+            })}
+          </Table>
+          <h4 className="text-end me-5">
+            Total price is : <span>{total.toFixed(1)} EGP</span>
+          </h4>
         </div>
-      </div>
+      )}
+      {!cartList.length && (
+        <section className="container mt-1 text-center w-50">
+                  <p class="text-danger fs-1 mt-3 text-uppercase">Your Cart is Empty</p>
+        <div>
+        <img src={empty} alt="Welcome Page" className="w-75" />
+        </div>
+<Link class="shadow p-2 fs-4 fw-bold text-decoration-none text-uppercase text-black-50" to="/products">
+Shop Now
+</Link>
+    </section>
+      )}
     </>
   );
-   
-}
+};
 
 export default Cart;
