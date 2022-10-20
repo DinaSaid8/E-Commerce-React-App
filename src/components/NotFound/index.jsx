@@ -5,7 +5,7 @@ import notfound from "./undraw_Page_not_found_re_e9o6.png"
 const NotFound = () => {
     return (
         <>
-            <section className="container mt-5 text-center">
+            <section className="container mt-5 w-25 text-center">
                 <div>
                 <img src={notfound} alt="not found" className="w-100" />
                 </div>
