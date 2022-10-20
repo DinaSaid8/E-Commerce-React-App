@@ -191,10 +191,7 @@ const Register = () => {
             type="submit"
             className="btn btn-success text-white fw-bold py-2 px-4 mt-3 d-block"
           >
-            <Link to="/login" className="text-white text-decoration-none">
-            
-              Register
-            </Link>
+            Register
           </Button>
 
           {/* To login */}
