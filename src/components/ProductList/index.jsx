@@ -1,3 +1,4 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +8,7 @@ import { increment } from "../../redux/counterSlice";
 
 const ProductList = () => {
   const rateCount = useSelector((state) => state.counter.counter);
+  // const authState = useSelector((state) => state.auth.auth);
 
   const [products, setProducts] = useState([]);
 
@@ -31,13 +33,20 @@ const ProductList = () => {
       dispatch(increment(0));
     }
   };
+ 
 
+  
   let addToCart = (product) => {
     dispatch(AddToCart(product));
+    
   };
+
+
+
 
   return (
     <>
+      
       {products.length ? (
         <section>
           <div className="pt-5 ps-5 ">
@@ -67,22 +76,22 @@ const ProductList = () => {
                       </div>
                       <h4>
                         <Link
-                          className="text-dark fs-6 text-decoration-none "
+                          className="text-dark fs-6 text-decoration-none h-25 "
                           to={`/details/${product.id}`}
                           key={product.id}
                         >
-                          {product.title}
+                          {product.title} <span> click me </span>
                         </Link>
                       </h4>
                       <h5 className="fs-4 text-danger">{product.price} EGP</h5>
-                      <button
+                      {/* <button
                         className="btn btn-danger my-2 text-white"
-                        onClick={() => addToCart(product)}
+                        onClick={() => { addToCart(product) }}
+                        
                       >
-                        ADD TO CART
-                      </button>
+                        ADD TO CART  
+                      </button> */}
                     </div>
-
                     <h6 className="text-warning">{product.rating.rate}⭐</h6>
                   </div>
                 );
@@ -92,8 +101,8 @@ const ProductList = () => {
         </section>
       ) : (
         <div className="container text-center position-absolute top-50 m-5">
-            <Spinner animation="border" variant="danger"
-            />
+          <Spinner animation="border" variant="danger"
+          />
         </div>
       )}
     </>

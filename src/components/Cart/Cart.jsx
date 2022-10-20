@@ -38,10 +38,10 @@ const Cart = () => {
 
   return (
     <>
-      
+
       {!!cartList.length && (
         
-        <div className="container mt-5">
+        <div className="container mt-5 w-75">
 <h3 className="text-uppercase text-black-50 my-4 fs-2 fw-bold text-center">
         Cart Info
       </h3>

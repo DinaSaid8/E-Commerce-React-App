@@ -90,10 +90,10 @@ const Register = () => {
               })}
             />
             {errors?.email?.type === "required" && (
-              <p className="alert alert-danger">Email is required</p>
+              <p className="text-danger">Email is required</p>
             )}
             {errors?.email?.type === "pattern" && (
-              <p className="alert alert-danger">Invalid Email</p>
+              <p className="text-danger">Invalid Email</p>
             )}
           </Form.Group>
 

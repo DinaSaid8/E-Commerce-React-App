@@ -32,7 +32,10 @@ export const cartSlice = createSlice({
         }
       });
     },
-
+// remove cart
+    removeall: (state, action) => {
+      state.cartitems=[]
+    },
     //increment cart
     incrementCart: (state, action) => {
       const itemIndex = state.cartitems.findIndex(
@@ -58,6 +61,6 @@ export const cartSlice = createSlice({
 });
 
 //action
-export const { incrementCart, decrementCart, AddToCart, deleteItem } =
+export const { incrementCart, decrementCart, AddToCart, deleteItem,removeall } =
   cartSlice.actions;
 export default cartSlice.reducer;
