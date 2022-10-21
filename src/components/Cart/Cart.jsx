@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
-import empty from "./undraw_empty_cart_co35.png"
+import empty from "./undraw_empty_cart_co35.png";
 import {
   decrementCart,
   deleteItem,
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartList = useSelector((state) => state.counteritem.cartitems);
+
   console.log(cartList);
   const [total, setTotal] = useState(0);
 
@@ -38,13 +39,11 @@ const Cart = () => {
 
   return (
     <>
-
       {!!cartList.length && (
-        
         <div className="container mt-5 w-75">
-<h3 className="text-uppercase text-black-50 my-4 fs-2 fw-bold text-center">
-        Cart Info
-      </h3>
+          <h3 className="text-uppercase text-black-50 my-4 fs-2 fw-bold text-center">
+            Cart Info
+          </h3>
           <Table striped bordered hover className=" text-center shadow  ">
             <thead>
               <tr>
@@ -101,14 +100,17 @@ const Cart = () => {
       )}
       {!cartList.length && (
         <section className="container mt-1 text-center w-50">
-                  <p class="text-danger fs-1 mt-3 text-uppercase">Your Cart is Empty</p>
-        <div>
-        <img src={empty} alt="Welcome Page" className="w-75" />
-        </div>
-<Link class="shadow p-2 fs-4 fw-bold text-decoration-none text-uppercase text-black-50" to="/products">
-Shop Now
-</Link>
-    </section>
+          <p class="text-danger fs-1 mt-3 text-uppercase">Your Cart is Empty</p>
+          <div>
+            <img src={empty} alt="Welcome Page" className="w-75" />
+          </div>
+          <Link
+            class="shadow p-2 fs-4 fw-bold text-decoration-none text-uppercase text-black-50"
+            to="/products"
+          >
+            Shop Now
+          </Link>
+        </section>
       )}
     </>
   );

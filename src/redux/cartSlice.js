@@ -32,9 +32,9 @@ export const cartSlice = createSlice({
         }
       });
     },
-// remove cart
+    // remove cart
     removeall: (state, action) => {
-      state.cartitems=[]
+      state.cartitems = [];
     },
     //increment cart
     incrementCart: (state, action) => {
@@ -44,6 +44,7 @@ export const cartSlice = createSlice({
       if (state.cartitems[itemIndex].quantity >= 1) {
         state.cartitems[itemIndex].quantity += 1;
         state.counteritem = state.cartitems.length;
+        console.log(state.cartitems.length);
       }
     },
 
@@ -61,6 +62,11 @@ export const cartSlice = createSlice({
 });
 
 //action
-export const { incrementCart, decrementCart, AddToCart, deleteItem,removeall } =
-  cartSlice.actions;
+export const {
+  incrementCart,
+  decrementCart,
+  AddToCart,
+  deleteItem,
+  removeall,
+} = cartSlice.actions;
 export default cartSlice.reducer;

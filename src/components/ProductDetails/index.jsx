@@ -5,7 +5,7 @@ import { AddToCart } from "../../redux/cartSlice";
 
 const ProductDetails = () => {
   const params = useParams();
-  const [buttonText, setButtonText] = useState("ADD TO CART");
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -21,14 +21,7 @@ const ProductDetails = () => {
 
   let addToCart = (product) => {
     dispatch(AddToCart(product));
-    setButtonText("Added")
-
-  }
-
-
-  function handleClick(e) {
-     setButtonText('ADDED');
-   }
+  };
 
   return (
     <>
@@ -46,13 +39,16 @@ const ProductDetails = () => {
             <h6 className="fs-4 text-warning">
               {product?.rating?.count} Pieces Left{" "}
             </h6>
-             <button
-                    className="btn btn-danger my-2 text-white"
-                    onClick={()=>{addToCart(product); handleClick()}}
+            <button
+              className="btn btn-danger my-2 text-white"
+              disabled={disable}
+              onClick={() => {
+                addToCart(product);
+                setDisable(true);
+              }}
             >
-              {buttonText}
-                    {/* ADD TO CART */}
-                  </button>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

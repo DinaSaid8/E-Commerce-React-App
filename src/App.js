@@ -11,6 +11,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import NotFound from './components/NotFound';
 import WelcomePage from './components/WelcomePage';
+import Home from './components/home/home';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
     <BrowserRouter>
       <NavComponent count={count}/>
       <Routes>
+        <Route path='/home' element={<Home/>} />
         <Route path='/counter' element={<CounterContainer />} />
         <Route path='/' element= {<WelcomePage/>}/>
         <Route path='/products' element={<ProductList setCount={incrementCount} />} />
