@@ -99,13 +99,13 @@ const Cart = () => {
         </div>
       )}
       {!cartList.length && (
-        <section className="container mt-1 text-center w-50">
-          <p class="text-danger fs-1 mt-3 text-uppercase">Your Cart is Empty</p>
+        <section className="container pt-4 w-75  text-center">
+          <p class="text-danger fs-1 text-uppercase">Your Cart is Empty</p>
           <div>
-            <img src={empty} alt="Welcome Page" className="w-75" />
+            <img src={empty} alt="Welcome Page" className="w-50" />
           </div>
           <Link
-            class="shadow p-2 fs-4 fw-bold text-decoration-none text-uppercase text-black-50"
+            class="shadow p-2 fs-4 mb-2 fw-bold text-decoration-none text-uppercase text-black-50"
             to="/products"
           >
             Shop Now
